@@ -8,13 +8,13 @@ import SomeSvg from "@/assets/circle-heat-svgrepo-com.svg";
 const App = () => {
 	const [count, setCount] = useState<number>(0);
 
-	if (__PLATFORM__ === "desktop") {
-		return <div>ITS desktop PLATFORM</div>;
-	}
+	// if (__PLATFORM__ === "desktop") {
+	// 	return <div>ITS desktop PLATFORM</div>;
+	// }
 
-	if (__PLATFORM__ === "mobile") {
-		return <div>ITS mobile PLATFORM</div>;
-	}
+	// if (__PLATFORM__ === "mobile") {
+	// 	return <div>ITS mobile PLATFORM</div>;
+	// }
 
 	return (
 		<div>
