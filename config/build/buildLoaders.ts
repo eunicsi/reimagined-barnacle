@@ -1,6 +1,7 @@
 import { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types/types";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { buildBabelLoader } from "./babel/buildBabelLoader";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 	const isDev = options.mode === "development";
@@ -54,8 +55,8 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 	};
 
 	const tsLoader = {
-		exclude: /node_modules/,
 		test: /\.tsx?$/,
+		exclude: /node_modules/,
 		use: [
 			{
 				options: {
@@ -65,11 +66,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 			},
 		],
 	};
+
+	const babelLoader = buildBabelLoader(options);
+
 	// const tsLoader = {
 	// 	test: /\.tsx?$/,
 	// 	use: "ts-loader",
 	// 	exclude: /node_modules/,
 	// };
 
-	return [assetLoader, scssLoader, tsLoader, svgrLoader];
+	return [assetLoader, scssLoader, babelLoader /*tsLoader*/, svgrLoader];
 }
